@@ -5,7 +5,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
-                <title>Logistics Tracking dAPP</title>
+                <title>Logistics Tracking dAPP -main</title>
                 <link rel="icon" href="/blockchain.png" type="image/png"/>
             </head>
             <body>

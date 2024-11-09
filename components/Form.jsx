@@ -26,14 +26,12 @@ export default ({
     });
     
     
-    const [date,setDate] = useState('');
     const [IsUseCurrentTime,setIsCurrentTime] = useState(false);
     
     const handleTimeInputSelection = (e) => {
         const calendarInput = document.getElementById("timeField");
         if (e.target.value === "timeStamp"){
               setIsCurrentTime(true);
-              setDate(Date.now());
               calendarInput.value="";
         }
         else{
@@ -44,23 +42,14 @@ export default ({
     const createItem = async() => {
         try{
             console.log(shipment);
-            console.log(date);
             await createShipment(shipment);
             setCreateShipmentModel(false);
-            // window.location.reload();
+            window.location.reload();
         }catch(error){
             console.log(">> Form module error:  create Item to error: ",error)
         }
     };
     
-    const handleSubmission = () => {
-        const dateNow = IsUseCurrentTime ? Date.now() : date
-        setShipment({
-            ...shipment,
-            pickupTime: dateNow,
-        })
-        createItem();
-    }
     
     return createShipmentModel ? (
         <div className={"fixed inset-0 z-10 overflow-y-auto"}>
@@ -137,8 +126,10 @@ export default ({
                                                "cursor-not-allowed text-gray-300 readonly disabled:opacity-40":
                                                ""} `}
                                             onChange={(e) =>
-                                                {const timestamp = new Date(e.target.value).getTime();
-                                                setDate(timestamp)}}>
+                                                setShipment({
+                                                    ...shipment,
+                                                    pickupTimes: e.target.value,
+                                                })}>
                                 </input>
                             </div>
                             <div className={"relative mt-3"}>
@@ -164,7 +155,7 @@ export default ({
                                            })}>
                                 </input>
                             </div>
-                            <button onClick={() => handleSubmission()}
+                            <button onClick={() => createItem()}
                                     className={"block w-full mt-3 py-3 px-4 font-medium text-sm text-center " +
                                         "text-white bg-indigo-600 hover:bg-indigo-400 active:bg-indigo-700 " +
                                         "rounded-lg ring-offset-2 ring-indigo-600 focus:ring-2"}>
