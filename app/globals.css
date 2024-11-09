@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.tdcus:hover + .tdcus{
+    background-color: theme('colors.indigo.200');
+}
