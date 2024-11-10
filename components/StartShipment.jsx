@@ -10,9 +10,9 @@ export default ({ startModal, setStartModal, startShipment, currentUser}) => {
     });
     
     const startShipping = () => {
+        startShipment(getProduct);
         setStartModal(false);
         window.location.reload();
-        startShipment(getProduct);
     };
     
     return startModal ? (
@@ -51,7 +51,6 @@ export default ({ startModal, setStartModal, startShipment, currentUser}) => {
                                            setGetProduct({
                                                ...getProduct,
                                                receiver: e.target.value,
-                                               
                                            })
                                        }
                                 />
@@ -65,7 +64,6 @@ export default ({ startModal, setStartModal, startShipment, currentUser}) => {
                                            setGetProduct({
                                                ...getProduct,
                                                index: e.target.value,
-                                               
                                            })
                                        }
                                 />

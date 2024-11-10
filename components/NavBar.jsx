@@ -14,7 +14,7 @@ export default() => {
         {title:"Main",path:"#"},
         {title:"Services",path:"#"},
         {title:"Packages",path:"#"},
-        {title:"Erc20",path:"#"}
+        {title:"ERC-20",path:"https://ethereum.org/vi/developers/docs/standards/tokens/erc-20/"}
     ];
     
     useEffect(() => {
@@ -51,7 +51,7 @@ export default() => {
                     <ul className={"justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0"}>
                         {navigation.map((item,idx) => {
                             return (
-                                <li key={idx} className={"text-gray-700 hover:text-gray-900"}>
+                                <li key={idx} className={"text-gray-700 hover:text-gray-900 hover:scale-110"}>
                                     <a href={item.path} className={"block"}>
                                         {item.title}
                                     </a>

@@ -3,19 +3,19 @@ import {Fot1, Fot2} from "@/components/index"
 export default () => {
     const footerNavs = [
         {
-            href:"javascript:void()",
+            href:"#",
             name:"Terms"
         },
         {
-            href:"javascript:void()",
+            href:"#",
             name:"License"
         },
         {
-            href:"javascript:void()",
+            href:"#",
             name:"Privacy"
         },
         {
-            href:"javascript:void()",
+            href:"#",
             name:"About us"
         }
     ];

@@ -18,13 +18,13 @@ export default ({
             buttonConfirm : "Create new tracking"
         }
     }
+    
     const [shipment,setShipment] = useState({
         receiver: "",
         pickupTime: "",
         distance: "",
         price: "",
     });
-    
     
     const [IsUseCurrentTime,setIsCurrentTime] = useState(false);
     
@@ -49,7 +49,6 @@ export default ({
             console.log(">> Form module error:  create Item to error: ",error)
         }
     };
-    
     
     return createShipmentModel ? (
         <div className={"fixed inset-0 z-10 overflow-y-auto"}>
@@ -125,11 +124,11 @@ export default ({
                                            ${IsUseCurrentTime ?
                                                "cursor-not-allowed text-gray-300 readonly disabled:opacity-40":
                                                ""} `}
-                                            onChange={(e) =>
-                                                setShipment({
-                                                    ...shipment,
-                                                    pickupTimes: e.target.value,
-                                                })}>
+                                           onChange={(e) =>
+                                               setShipment({
+                                                   ...shipment,
+                                                   pickupTime: e.target.value,
+                                               })}>
                                 </input>
                             </div>
                             <div className={"relative mt-3"}>

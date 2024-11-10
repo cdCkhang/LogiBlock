@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
                 <link rel="icon" href="/blockchain.png" type="image/png"/>
             </head>
             <body>
-            <TrackingProvider>
+                <TrackingProvider>
                     <NavBar/>
                     {children}
                 </TrackingProvider>
