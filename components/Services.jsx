@@ -41,7 +41,7 @@ export default ({
     };
     
     return (
-        <section id ={"servicesComp"} className={"py-8 pb-8 select-none"}>
+        <section id ={"services"} className={"py-8 pb-8 select-none"}>
             <div className={"max-w-screen-xl mx-auto px-4 md:px-8"}>
                 <div className={"mt-5"}>
                     <div className={"flex justify-between items-center"}>

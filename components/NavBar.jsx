@@ -9,23 +9,31 @@ import Image from "next/image";
 import "../app/globals.css";
 
 export default() => {
+    const {currentUser, connectWallet, disconnectWallet, getBalance} = useContext(TrackingContext);
+    
     const [state, setState] = useState(false);
-    const {currentUser, connectWallet, disconnectWallet} = useContext(TrackingContext);
+    const [balance, setBalance] = useState("0.000");
     
     const navigation = [
-        {title:"Operations",path:"#servicesComp"},
-        {title:"Tracking history",path:"#tableComp"},
+        {title:"Tracking history",path:"#history"},
+        {title:"Serivces",path:"#services"},
         {title:"Docs",path:"#"},
-        {title:"ERC-20",path:"https://ethereum.org/vi/developers/docs/standards/tokens/erc-20/"},
         {title:"Source",path:"#"}
     ];
     
     useEffect(() => {
+        const fetchBalance = async() => {
+            const fetchedBalance = await getBalance(currentUser);
+            setBalance(fetchedBalance);
+        };
+        
         document.onclick = (e) => {
             const target = e.target;
             if (!target.closest(".menu-btn")) setState(false);
         }
-    }, []);
+        
+        fetchBalance();
+    }, [currentUser, getBalance]);
     
     return (
         <nav
@@ -66,13 +74,20 @@ export default() => {
                     </ul>
                     <div className={"flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0"}>
                         {currentUser ? (
-                            <div className={"flex items-center gap-3"}>
-                                <p className={"flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium" +
-                                    " bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gray-800 active:bg-gray-900 rounded-full md:inline-flex"}>
-                                    Connected Wallet: {currentUser.slice(0, 15)}...{currentUser.slice(-4)}
-                                </p>
-                                <button onClick ={() => disconnectWallet()}
-                                    className={"flex items-center justify-center text-white px-2 py-2 text-sm bg-gray-800 hover:bg-gray-500 rounded-lg"}>
+                            <div className={"flex items-start gap-2 mt-8"}>
+                                <div className={"flex flex-col"}>
+                                    <p className={"flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium " +
+                                        " bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gray-800 active:bg-gray-900 rounded-full md:inline-flex"}>
+                                        Connected Wallet: {currentUser.slice(0, 10)}...{currentUser.slice(-5)}
+                                    </p>
+                                    <div className={`mt-1 text-right mr-5`}>
+                                        <span className={"font-bold text-gray-500"}>Balance (CRST):
+                                            <span className={"font-bold text-gray-800 text-lg"}> {balance} </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <button onClick={() => disconnectWallet()}
+                                        className={"flex items-center justify-center text-white px-2 py-2 text-sm bg-gray-800 hover:bg-gray-500 rounded-lg ml-2"}>
                                     Disconnect Wallet
                                 </button>
                             </div>

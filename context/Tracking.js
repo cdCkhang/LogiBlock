@@ -195,12 +195,7 @@ export const TrackingProvider = ({ children }) => {
             return "Account connection went wrong";
         }
     };
-    const checkIfAccountChanged = async() =>
-    {
-        const connectWallet = async => ({
-        
-        })
-    }
+ 
     // Function to get and format balance
     const getBalance = async (address) => {
         try {
@@ -255,11 +250,9 @@ export const TrackingProvider = ({ children }) => {
         
     };
     
-    
-    useEffect(() => {
-        checkIfWalletConnected();
+    const checkAccountChanges = async() => {
+        // Add Listeners for Accounts Changes
         if (window.ethereum) {
-            // Handle account changes
             window.ethereum.on('accountsChanged', (accounts) => {
                 if (accounts.length > 0) {
                     setCurrentUser(accounts[0]);
@@ -268,7 +261,6 @@ export const TrackingProvider = ({ children }) => {
                 }
             });
             
-            // Handle chain/network changes
             window.ethereum.on('chainChanged', () => {
                 window.location.reload();
             });
@@ -281,6 +273,11 @@ export const TrackingProvider = ({ children }) => {
                 window.ethereum.removeListener('chainChanged', () => {});
             }
         };
+    }
+    useEffect(() => {
+        checkIfWalletConnected();
+        checkAccountChanges();
+       
         }, []);
         
     return (

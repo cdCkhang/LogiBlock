@@ -28,7 +28,7 @@ export default ({ setCreateShipmentModel, allShipmentData }) => {
     console.log(allShipmentData);
     
     return (
-        <div id ={"tableComp"} className={"max-w-screen-xl mx-auto px-4 md:px-8"}>
+        <div id ={"history"} className={"max-w-screen-xl mx-auto px-4 md:px-8"}>
             <div className={"items-start justify-between md:flex "}>
                 <div className={"max-w-lg"}>
                     <h5 className={"text-gray-800 text-xl font-bold sm:text-2xl"}>

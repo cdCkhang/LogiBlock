@@ -20,9 +20,10 @@ const index = () => {
     const {
         currentUser,
         createShipment,
-        getAllShipment, // return epoch
+        getAllShipment,
         completeShipment,
         getShipments,
+        getBalance,
         startShipment,
         getShipmentCount,
         disconnectWallet,
@@ -39,13 +40,23 @@ const index = () => {
     const [allShipmentsData,setAllShipmentsData] = useState()
     
     useEffect(() => {
-        const getCampaignData = getAllShipment();
-        
-        return async() => {
-            const allData = await getCampaignData;
-            setAllShipmentsData(allData);
+        // const getCampaignData = getAllShipment();
+        //
+        // return async() => {
+        //     const allData = await getCampaignData;
+        //     setAllShipmentsData(allData);
+        // }
+        const fetchData = async() => {
+            try{
+                const data = await getAllShipment();
+                setAllShipmentsData(data);
+            }
+            catch(error){
+                console.log("Error at fetchData: ",error);
+            }
         }
-    }, []);
+        fetchData();
+    }, [getAllShipment]);
     
     return (
         <div className="text-xl scroll-smooth">
@@ -74,7 +85,9 @@ const index = () => {
                 openProfile={openProfile}
                 setOpenProfile={setOpenProfile}
                 currentUser={currentUser}
+                allShipmentData={allShipmentsData}
                 getShipmentCount={getShipmentCount}
+                getBalance={getBalance}
             />
             <CompleteShipment
                 completeModal={completeModal}
