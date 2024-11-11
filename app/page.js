@@ -9,9 +9,11 @@ import {
     CompleteShipment,
     GetShipment,
     StartShipment,
-    HelpModal
+    HelpModal,
+    ImageSlider,
 } from "@/components/index";
 import {TrackingContext} from "@/context/Tracking";
+import Image from "next/image";
 
 
 const index = () => {
@@ -22,7 +24,8 @@ const index = () => {
         completeShipment,
         getShipments,
         startShipment,
-        getShipmentCount
+        getShipmentCount,
+        disconnectWallet,
     } = useContext(TrackingContext);
     
     // User state variable
@@ -45,7 +48,8 @@ const index = () => {
     }, []);
     
     return (
-        <div className="text-xl">
+        <div className="text-xl scroll-smooth">
+            <ImageSlider/>
             <HelpModal
                 getHelpModal={getHelpModal}
                 setHelpModal={setHelpModal}

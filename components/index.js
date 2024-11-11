@@ -8,6 +8,7 @@ import StartShipment from "@/components/StartShipment";
 import CompleteShipment from "@/components/CompleteShipment";
 import GetShipment from "@/components/GetShipment";
 import HelpModal from "@/components/HelpModal";
+import ImageSlider from "@/components/ImageSlider"
 
 import Fot1 from "@/components/SVG/Fot1";
 import Fot2 from "@/components/SVG/Fot2";
@@ -28,6 +29,7 @@ export {
     CompleteShipment,
     StartShipment,
     HelpModal,
+    ImageSlider,
     Fot1,
     Fot2,
     Nav1,

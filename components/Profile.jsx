@@ -2,8 +2,9 @@
 
 import {useState, useEffect} from "react";
 import Images from "@/assets/index"
-import {Str1} from "@/components/index";
 import Image from "next/image";
+import {Str1} from "@/components/index";
+
 
 export default({
     openProfile,
@@ -34,32 +35,34 @@ export default({
                         </button>
                     </div>
                     <div className={"max-w-sm mx-auto py-3 space-y-3 text-center"}>
-                        <div className={"flex flex-col items-center pb-10"}>
+                        <div className={"flex flex-col items-center pb-10 gap-3"}>
                             <h5 className={"mb-5 text-xl font-medium text-gray-900 dark:text-white"}>
                                 User Profile
                             </h5>
                             <Image
                                 className={"w-24 h-24 mb-3 rounded-full shadow-lg"}
-                                src={Images.userprofile}
+                                src={Images.avatar}
                                 alt={"user-avatar"}
                             />
+                            <div>
                             
-                            <span className={" text-left text-sm text-gray-500 dark:text-gray-400"}>
-                                <span className={"font-bold"}>Wallet Address: </span>{currentUser}
-                            </span>
-                            <div className={"flex mt-4 space-x-3 md:mt-6"}>
-                                <a
-                                    href={"#"}
-                                    className={"inline-flex items-center px-4 py-2 text-sm font-medium text-center" +
-                                        " text-black rounded-lg border-2"}
-                                >
-                                    {currentUser.balance}
-                                </a>
                             </div>
+                            <span className={"text-left text-sm text-gray-500 dark:text-gray-400"}>
+                                <span
+                                    className={"font-bold"}>Wallet Address: </span>{currentUser.slice(0, 20)}...{currentUser.slice(-5)}
+                            </span>
+                            <span className={" text-left text-sm text-gray-500 dark:text-gray-400"}>
+                                <span
+                                    className={"font-bold"}>Total shipments count: </span>{count}
+                            </span>
+                            <span className={" text-left text-sm text-gray-500 dark:text-gray-400"}>
+                                <span
+                                    className={"font-bold"}>Wallet Address: </span>{currentUser.slice(0, 20)}...{currentUser.slice(-5)}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    ):("")
-    }
+    ) : ("")
+}

@@ -27,26 +27,45 @@ export default ({
     });
     
     const [IsUseCurrentTime,setIsCurrentTime] = useState(false);
+    const [time, setTime] = useState('');
+   
+    
+    const handleTimeInput = (e) => {
+        setTime(e.target.value);
+    }
     
     const handleTimeInputSelection = (e) => {
         const calendarInput = document.getElementById("timeField");
         if (e.target.value === "timeStamp"){
               setIsCurrentTime(true);
               calendarInput.value="";
+              calendarInput.disabled = true;
         }
         else{
               setIsCurrentTime(false);
+              calendarInput.disabled = false;
         }
     };
     
     const createItem = async() => {
-        try{
-            console.log(shipment);
-            await createShipment(shipment);
+        try {
+            // If true, return Time State's value, else return value from input.
+            const newTime = IsUseCurrentTime ?
+                new Date().toLocaleString() :
+                time;
+            setTime(newTime);
+            
+            const updatedShipment = {
+                ...shipment,
+                pickupTime: newTime
+            };
+            
+            await createShipment(updatedShipment);
             setCreateShipmentModel(false);
             window.location.reload();
-        }catch(error){
-            console.log(">> Form module error:  create Item to error: ",error)
+            
+        } catch(error) {
+            console.log(">> Form module error: create Item error:", error);
         }
     };
     
@@ -101,7 +120,7 @@ export default ({
                                            checked={!IsUseCurrentTime}
                                            onChange={(e) => handleTimeInputSelection(e)}/>
                                     <label className={"ml-1"} htmlFor={"manualTime"}>
-                                        Enter manually
+                                        Set time manually
                                     </label>
                                 </div>
                                 <div className={"flex text-sm align-middle"}>
@@ -118,17 +137,14 @@ export default ({
                                 </div>
                             </div>
                             <div className={"relative"}>
-                                <input id={"timeField"} type={"date"} placeholder={"Pick-up time"}
+                                <input id={"timeField"}
+                                       type={"date"}
+                                       placeholder={"Pick-up time"}
                                        className={`w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-non` +
                                            ` border focus:border-indigo-600 shadow-sm rounded-lg text-sm
                                            ${IsUseCurrentTime ?
-                                               "cursor-not-allowed text-gray-300 readonly disabled:opacity-40":
-                                               ""} `}
-                                           onChange={(e) =>
-                                               setShipment({
-                                                   ...shipment,
-                                                   pickupTime: e.target.value,
-                                               })}>
+                                               "cursor-not-allowed text-gray-300 readonly disabled:opacity-40": ""} `}
+                                       onChange={(e) =>(handleTimeInput(e))}>
                                 </input>
                             </div>
                             <div className={"relative mt-3"}>

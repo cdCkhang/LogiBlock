@@ -4,8 +4,14 @@ import startshipment from "./Images/strtship.png"
 import shipcount from "./Images/shipcount.jpg"
 import userprofile from "./Images/user.jpg"
 import sendship from "./Images/sendship.jpg"
+import avatar from "./Images/user.jpg"
+import brandicon from "./Images/LogiBlock.png"
+import welcome from "./Images/welcome.png"
+import guide1 from "./Images/addtrack-guide.png"
+import guide2 from "./Images/getship-guide.png"
 
 import sender from "./svg/output-svgrepo-com.svg"
+import helpicon from "./svg/help-icon.svg"
 
 export default {
     completeshipment,
@@ -15,4 +21,10 @@ export default {
     userprofile,
     sendship,
     sender,
+    avatar,
+    brandicon,
+    helpicon,
+    welcome,
+    guide1,
+    guide2,
 }

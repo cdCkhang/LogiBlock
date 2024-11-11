@@ -31,6 +31,12 @@ export default ({ completeModal, setCompleteModal, completeShipment}) => {
                         <h5 className={"text-lg font-medium text-gray-800"}>
                             Complete a shipment
                         </h5>
+                        <p className={"text-left font-bold text-sm text-gray-800 border-t"}>Usage guide:</p>
+                        <ol className={"text-left text-sm text-gray-600 border-b"}>
+                            <li><span className={"text-gray-800 font-bold"}>1) </span>Set a shipment's status to completed.</li>
+                            <li><span className={"text-gray-800 font-bold"}>2) </span>Get shipment details to make sure,
+                                setting the correct shipment.</li>
+                        </ol>
                         <form onSubmit={(e) => e.preventDefault()}>
                             <div className={"relative mt-3 "}>
                                 <input type={"text"} placeholder={"Receiver's address"}
@@ -58,7 +64,7 @@ export default ({ completeModal, setCompleteModal, completeShipment}) => {
                                     className={"block w-full mt-3 py-3 px-4 font-medium text-sm text-center text-white" +
                                         " bg-indigo-700 hover:bg-indigo-400 active:bg-indigo-500 rounded-lg ring-offset-2" +
                                         " ring-indigo-600 focus:ring-2"}>
-                                Complete shipment
+                                Confirm shipment's arrival
                             </button>
                         </form>
                     </div>
